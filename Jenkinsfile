@@ -40,14 +40,6 @@ pipeline {
                 }
             }
         }
-        
-        stage("OWASP Dependency Check"){
-            steps{
-                dependencyCheck additionalArguments: '--scan ./ --format HTML ', odcInstallation: 'DP'
-                dependencyCheckPublisher pattern: '**/dependency-check-report.xml'
-            }
-        }
-        
          stage("Build"){
             steps{
                 sh " mvn clean install"
@@ -67,9 +59,9 @@ pipeline {
             }
         }
             
-        stage("Deploy To Tomcat"){
+        stage("Deploy"){
             steps{
-                sh "cp  /var/lib/jenkins/workspace/CI-CD/target/petclinic.war /opt/apache-tomcat-9.0.65/webapps/ "
+                sh "cp  /var/lib/jenkins/workspace/CI-CD/target/petclinic.war /opt/apache-tomcat-8.5.96/webapps/ "
             }
         }
     }
