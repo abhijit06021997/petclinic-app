@@ -53,7 +53,7 @@ pipeline {
                         
                         sh "docker build -t petapp ."
                         sh "docker tag petapp rahulukey123/pet-clinicapp:latest "
-                        sh "docker push rahul123/pet-clinicapp:latest "
+                        sh "docker push rahulukey123/pet-clinicapp:latest "
                     }
                 }
             }
@@ -61,7 +61,7 @@ pipeline {
             
         stage("Deploy"){
             steps{
-                sh "cp  /var/lib/jenkins/workspace/CI-CD/target/petclinic.war /opt/apache-tomcat-8.5.96/webapps/ "
+                sh "cp  /var/lib/jenkins/workspace/pipeline/target/petclinic.war /opt/apache-tomcat-8.5.96/webapps/ "
             }
         }
     }
